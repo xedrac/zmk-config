@@ -145,6 +145,7 @@
 
         hm: homerowmods {
             compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
             flavor = "balanced";
             tapping-term-ms = <280>;         // produces tap if held longer than this
             quick-tap-ms = <200>;            // quick tap and then hold for repeated key taps
