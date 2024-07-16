@@ -143,20 +143,20 @@
             bindings = <&mo LOWER>, <&to LOWER>;
         };
 
-        hml: hold_tap {
+        hml: hold_tap_l {
             flavor = "balanced";
             tapping-term-ms = <280>;         // produces tap if held longer than this
-            quick-tap-ms = <150>;            // quick tap then tap + hold, holds down the tapped key
+            quick-tap-ms = <250>;            // quick tap and then hold for repeated key taps
             global-quick-tap-ms = <150>;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <KEYS_R THUMBS>;
             hold-trigger-on-release;
        };
 
-       hmr: hold_tap {
+       hmr: hold_tap_r {
            flavor = "balanced";
            tapping-term-ms = <280>;
-           quick-tap-ms = <150>;
+           quick-tap-ms = <250>;
            global-quick-tap-ms = <150>;
            bindings = <&kp>, <&kp>;
            hold-trigger-key-positions = <KEYS_L THUMBS>;
@@ -167,7 +167,7 @@
        hml_repeat: hold_tap {
            flavor = "balanced";
            tapping-term-ms = <280>;
-           quick-tap-ms = <150>;
+           quick-tap-ms = <250>;
            global-quick-tap-ms = <150>;
            bindings = <&kp>, <&key_repeat>;
            hold-trigger-key-positions = <KEYS_R THUMBS>;
