@@ -145,11 +145,14 @@
 
         hm: homerowmods {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
-            flavor = "balanced";
-            tapping-term-ms = <280>;         // produces tap if held longer than this
-            quick-tap-ms = <200>;            // quick tap and then hold for repeated key taps
-            global-quick-tap-ms = <150>;
+            #binding-cells = <2>;
+            //flavor = "balanced";             // interrupting key press triggers modified tap on key release instead of press (or tapping-term-ms timeout)
+            flavor = "hold-preferred";       // interrupting key press triggers modified tap immediately (ignores tapping-term-ms for interrpting keys)
+            //flavor = "tap-preferred";        // interrupting key press only modified if hm key is held for more than tapping-term-ms, otherwise it's just a tap
+            tapping-term-ms = <200>;         // how long key must be pressed to trigger hold behavior
+            quick-tap-ms = <200>;            // quick tap and then hold within this time, for repeated key taps
+            require-prior-idle-ms = <125>;   // disable hold-tap behavior if typing rapidly
+            retro-tap = false;               // if true, if a hold is released without another keypress, it'll trigger a tap
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <KEYS_L KEYS_R THUMBS>;
             hold-trigger-on-release;
