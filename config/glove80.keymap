@@ -152,7 +152,7 @@
             tapping-term-ms = <200>;         // how long key must be pressed to trigger hold behavior
             quick-tap-ms = <200>;            // quick tap and then hold within this time, for repeated key taps
             require-prior-idle-ms = <125>;   // disable hold-tap behavior if typing rapidly
-            retro-tap = <0>;                 // if 1, will trigger a tap when a hold is released without another keypress
+            //retro-tap;                       // if 1, will trigger a tap when a hold is released without another keypress
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <KEYS_L KEYS_R THUMBS>;
             hold-trigger-on-release;
