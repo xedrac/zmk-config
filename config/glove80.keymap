@@ -145,8 +145,8 @@
 
         hml: hold_tap {
             flavor = "balanced";
-            tapping-term-ms = <280>;
-            quick-tap-ms = <150>;
+            tapping-term-ms = <280>;         // produces tap if held longer than this
+            quick-tap-ms = <150>;            // quick tap then tap + hold, holds down the tapped key
             global-quick-tap-ms = <150>;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <KEYS_R THUMBS>;
