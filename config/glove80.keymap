@@ -102,7 +102,7 @@
 #define RF1 75  // right-floor row
 #define RF2 76
 #define RF3 77
-Z#define RF4 78
+#define RF4 78
 #define RF5 79
 
 #define LH0 71  // left thumb keys
