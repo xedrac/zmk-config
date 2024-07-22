@@ -132,7 +132,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&mo 3>, <&to 3>;
+            bindings = <&mo 1>, <&to 1>;
         };
 
         hm: homerowmods {
@@ -154,6 +154,42 @@
             hold-trigger-key-positions = <KEYS_L KEYS_R THUMBS>;
             hold-trigger-on-release;
             require-prior-idle-ms = <100>;
+        };
+
+        quote_under: quote_under {
+            compatible = "zmk,behavior-mod-morph";
+            label = "QUOTE_UNDER";
+            bindings = <&kp SINGLE_QUOTE>, <&kp UNDER>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT)>;
+        };
+
+        dash_dblquote: dash_dblquote {
+            compatible = "zmk,behavior-mod-morph";
+            label = "DASH_DBLQUOTE";
+            bindings = <&kp MINUS>, <&kp LS(DOUBLE_QUOTES)>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT)>;
+        };
+
+        fslash_less: fslash_less {
+            compatible = "zmk,behavior-mod-morph";
+            label = "FSLASH_LESS";
+            bindings = <&kp SLASH>, <&kp LS(LESS_THAN)>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT)>;
+        };
+
+        comma_question: comma_question {
+            compatible = "zmk,behavior-mod-morph";
+            label = "COMMA_QUESTION";
+            bindings = <&kp COMMA>, <&kp LS(QUESTION)>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT)>;
         };
 
         //// HRM repeat combo
@@ -197,26 +233,7 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
-            // ---------------------------------------------------------------------------------------------------------------------------------
-            // |  F1   |  F2 |  F3 |  F4  |  F5  |                                                               |  F6   |  F7   |  F8  |   F9  |  F10 |
-            // |  =    |  1  |  2  |  3   |  4   |  5   |                                                 |  6   |   7   |   8   |  9   |   0   |   -  |
-            // |  TAB  |  Q  |  W  |  E   |  R   |  T   |                                                 |  Y   |   U   |   I   |  O   |   P   |   \  |
-            // |  ESC  |  A  |  S  |  D   |  F   |  G   |                                                 |  H   |   J   |   K   |  L   |   ;   |   '  |
-            // |   `   |  Z  |  X  |  C   |  V   |  B   | LSHFT | LCTRL | LOWER | | LGUI  | RCTRL | RSHFT |  N   |   M   |   ,   |  .   |   /   | PGUP |
-            // | MAGIC | HOME| END | LEFT | RIGHT|      | BSPC  | DEL   | LALT  | | RALT  | RET   | SPACE |      |  UP   | DOWN  |  [   |   ]   | PGDN |
-
-            bindings = <
-&kp F1     &kp F2    &kp F3   &kp F4       &kp F5                                                                                           &kp F6        &kp F7       &kp F8    &kp F9    &kp F10
-&kp EQUAL  &kp N1    &kp N2   &kp N3       &kp N4        &kp N5                                                                     &kp N6  &kp N7        &kp N8       &kp N9    &kp N0    &kp MINUS
-&kp TAB    &kp Q     &kp W    &kp E        &kp R         &kp T                                                                      &kp Y   &kp U         &kp I        &kp O     &kp P     &kp BSLH
-&kp ESC    &kp A     &kp S    &hm LCTRL D  &hm LSHIFT F  &kp G                                                                      &kp H   &hm RSHIFT J  &hm RCTRL K  &kp L     &kp SEMI  &kp SQT
-&kp GRAVE  &kp Z     &kp X    &kp C        &kp V         &kp B   &kp LSHFT  &kp LCTRL  &layer_td    &kp LGUI  &kp RCTRL  &kp RSHFT  &kp N   &kp M         &kp COMMA    &kp DOT   &kp FSLH  &kp PG_UP
-&mo 4      &kp HOME  &kp END  &kp LEFT     &kp RIGHT             &kp BSPC   &kp DEL    &kp LALT     &kp RALT  &kp RET    &kp SPACE          &kp UP        &kp DOWN     &kp LBKT  &kp RBKT  &kp PG_DN
-            >;
-        };
-
-        gallium_layer {
+        graphite_layer {
             // ---------------------------------------------------------------------------------------------------------------------------------
             // |  F1   |  F2 |  F3 |  F4  |  F5  |                                                               |  F6   |  F7   |  F8  |   F9  |  F10 |
             // |  ]    |  1  |  2  |  3   |  4   |  5   |                                                 |  6   |   7   |   8   |  9   |   0   |   [  |
@@ -226,31 +243,12 @@
             // | MAGIC | HOME| END | LEFT | RIGHT|      | BSPC  | DEL   | LALT  | | RALT  | RET   | SPACE |      |  UP   | DOWN  |  /   |   =   | PGDN |
 
             bindings = <
-&kp F1     &kp F2    &kp F3   &kp F4    &kp F5                                                                                        &kp F6  &kp F7    &kp F8            &kp F9             &kp F10
-&kp EQUAL  &kp N1    &kp N2   &kp N3    &kp N4     &kp N5                                                                     &kp N6  &kp N7  &kp N8    &kp N9            &kp N0             &kp MINUS
-&kp TAB    &kp B     &kp L    &kp D     &kp C      &kp V                                                                      &kp Z   &kp Y   &kp O     &kp U             &kp COMMA          &kp BACKSLASH
-&kp ESC    &kp N     &kp R    &kp T     &kp S      &kp G                                                                      &kp P   &kp H   &kp A     &kp E             &kp I              &kp SLASH
-&kp GRAVE  &kp Q     &kp X    &kp M     &kp W      &kp J   &kp LSHFT  &kp LCTRL  &layer_td    &kp LGUI  &kp RCTRL  &kp RSHFT  &kp K   &kp F   &kp SQT   &kp SEMICOLON     &kp PERIOD         &kp PG_UP
-&mo 4      &kp HOME  &kp END  &kp LEFT  &kp RIGHT          &kp BSPC   &kp DEL    &kp LALT     &kp RALT  &kp RET    &kp SPACE          &kp UP  &kp DOWN  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PG_DN
-            >;
-        };
-
-        dvorak_layer {
-            // ---------------------------------------------------------------------------------------------------------------------------------
-            // |  F1   |  F2 |  F3 |  F4  |  F5  |                                                               |  F6   |  F7   |  F8  |   F9  |  F10 |
-            // |  ]    |  1  |  2  |  3   |  4   |  5   |                                                 |  6   |   7   |   8   |  9   |   0   |   [  |
-            // |  TAB  |  '  |  ,  |  .   |  P   |  Y   |                                                 |  F   |   G   |   C   |  R   |   L   |   \  |
-            // |  ESC  |  A  |  O  |  E   |  U   |  I   |                                                 |  D   |   H   |   T   |  N   |   S   |   -  |
-            // |   `   |  ;  |  Q  |  J   |  K   |  X   | LSHFT | LCTRL | LOWER | | LGUI  | RCTRL | RSHFT |  B   |   M   |   W   |  V   |   Z   | PGUP |
-            // | MAGIC | HOME| END | LEFT | RIGHT|      | BSPC  | DEL   | LALT  | | RALT  | RET   | SPACE |      |  UP   | DOWN  |  /   |   =   | PGDN |
-
-            bindings = <
-&kp F1             &kp F2    &kp F3     &kp F4       &kp F5                                                                                           &kp F6        &kp F7       &kp F8    &kp F9     &kp F10
-&kp RIGHT_BRACKET  &kp N1    &kp N2     &kp N3       &kp N4        &kp N5                                                                     &kp N6  &kp N7        &kp N8       &kp N9    &kp N0     &kp LBKT
-&kp TAB            &kp SQT   &kp COMMA  &kp DOT      &kp P         &kp Y                                                                      &kp F   &kp G         &kp C        &kp R     &kp L      &kp BSLH
-&kp ESC            &kp A     &kp O      &hm LCTRL E  &hm LSHIFT U  &kp I                                                                      &kp D   &hm RSHIFT H  &hm RCTRL T  &kp N     &kp S      &kp MINUS
-&kp GRAVE          &kp SEMI  &kp Q      &kp J        &kp K         &kp X   &kp LSHFT  &kp LCTRL  &layer_td    &kp LGUI  &kp RCTRL  &kp RSHFT  &kp B   &kp M         &kp W        &kp V     &kp Z      &kp PG_UP
-&mo 4              &kp HOME  &kp END    &kp LEFT     &kp RIGHT             &kp BSPC   &kp DEL    &kp LALT     &kp RALT  &kp RET    &kp SPACE          &kp UP        &kp DOWN     &kp FSLH  &kp EQUAL  &kp PG_DN
+&kp F1          &kp F2    &kp F3   &kp F4    &kp F5                                                                                              &kp F6  &kp F7      &kp F8            &kp F9             &kp F10
+&kp GRAVE       &kp N1    &kp N2   &kp N3    &kp N4     &kp N5                                                                     &kp N6        &kp N7  &kp N8      &kp N9            &kp N0             &kp EQUAL
+&kp TAB         &kp B     &kp L    &kp D     &kp W      &kp Z                                                                      &quote_under  &kp F   &kp O       &kp U             &kp J              &kp BACKSLASH
+&kp ESC         &kp N     &kp R    &kp T     &kp S      &kp G                                                                      &kp Y         &kp H   &kp A       &kp E             &kp I              &comma_question
+&kp LEFT_SHIFT  &kp Q     &kp X    &kp M     &kp C      &kp V   &kp LSHFT  &kp LCTRL  &layer_td    &kp LGUI  &kp RCTRL  &kp RSHFT  &kp K         &kp P   &kp PERIOD  &dash_dblquote    &fslash_less       &kp PG_UP
+&mo 2           &kp HOME  &kp END  &kp LEFT  &kp RIGHT          &kp BSPC   &kp DEL    &kp LALT     &kp RALT  &kp RET    &kp SPACE                &kp UP  &kp DOWN    &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PG_DN
             >;
         };
 
@@ -273,6 +271,44 @@
 &bootloader  &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                     &none  &none  &none  &none  &none  &bootloader
 &sys_reset   &none            &none            &none            &none            &none            &bt_2  &bt_3  &none           &none  &none  &none  &none  &none  &none  &none  &none  &sys_reset
 &none        &none            &none            &none            &none                             &bt_0  &bt_1  &out OUT_USB    &none  &none  &none         &none  &none  &none  &none  &none
+            >;
+        };
+
+        qwerty_layer {
+            // ---------------------------------------------------------------------------------------------------------------------------------
+            // |  F1   |  F2 |  F3 |  F4  |  F5  |                                                               |  F6   |  F7   |  F8  |   F9  |  F10 |
+            // |  =    |  1  |  2  |  3   |  4   |  5   |                                                 |  6   |   7   |   8   |  9   |   0   |   -  |
+            // |  TAB  |  Q  |  W  |  E   |  R   |  T   |                                                 |  Y   |   U   |   I   |  O   |   P   |   \  |
+            // |  ESC  |  A  |  S  |  D   |  F   |  G   |                                                 |  H   |   J   |   K   |  L   |   ;   |   '  |
+            // |   `   |  Z  |  X  |  C   |  V   |  B   | LSHFT | LCTRL | LOWER | | LGUI  | RCTRL | RSHFT |  N   |   M   |   ,   |  .   |   /   | PGUP |
+            // | MAGIC | HOME| END | LEFT | RIGHT|      | BSPC  | DEL   | LALT  | | RALT  | RET   | SPACE |      |  UP   | DOWN  |  [   |   ]   | PGDN |
+
+            bindings = <
+&kp F1     &kp F2    &kp F3   &kp F4    &kp F5                                                                                        &kp F6  &kp F7     &kp F8    &kp F9    &kp F10
+&kp EQUAL  &kp N1    &kp N2   &kp N3    &kp N4     &kp N5                                                                     &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
+&kp TAB    &kp Q     &kp W    &kp E     &kp R      &kp T                                                                      &kp Y   &kp U   &kp I      &kp O     &kp P     &kp BSLH
+&kp ESC    &kp A     &kp S    &kp D     &kp F      &kp G                                                                      &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
+&kp GRAVE  &kp Z     &kp X    &kp C     &kp V      &kp B   &kp LSHFT  &kp LCTRL  &layer_td    &kp LGUI  &kp RCTRL  &kp RSHFT  &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp PG_UP
+&mo 2      &kp HOME  &kp END  &kp LEFT  &kp RIGHT          &kp BSPC   &kp DEL    &kp LALT     &kp RALT  &kp RET    &kp SPACE          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &kp PG_DN
+            >;
+        };
+
+        dvorak_layer {
+            // ---------------------------------------------------------------------------------------------------------------------------------
+            // |  F1   |  F2 |  F3 |  F4  |  F5  |                                                               |  F6   |  F7   |  F8  |   F9  |  F10 |
+            // |  ]    |  1  |  2  |  3   |  4   |  5   |                                                 |  6   |   7   |   8   |  9   |   0   |   [  |
+            // |  TAB  |  '  |  ,  |  .   |  P   |  Y   |                                                 |  F   |   G   |   C   |  R   |   L   |   \  |
+            // |  ESC  |  A  |  O  |  E   |  U   |  I   |                                                 |  D   |   H   |   T   |  N   |   S   |   -  |
+            // |   `   |  ;  |  Q  |  J   |  K   |  X   | LSHFT | LCTRL | LOWER | | LGUI  | RCTRL | RSHFT |  B   |   M   |   W   |  V   |   Z   | PGUP |
+            // | MAGIC | HOME| END | LEFT | RIGHT|      | BSPC  | DEL   | LALT  | | RALT  | RET   | SPACE |      |  UP   | DOWN  |  /   |   =   | PGDN |
+
+            bindings = <
+&kp F1             &kp F2    &kp F3     &kp F4       &kp F5                                                                                           &kp F6        &kp F7       &kp F8    &kp F9     &kp F10
+&kp RIGHT_BRACKET  &kp N1    &kp N2     &kp N3       &kp N4        &kp N5                                                                     &kp N6  &kp N7        &kp N8       &kp N9    &kp N0     &kp LBKT
+&kp TAB            &kp SQT   &kp COMMA  &kp DOT      &kp P         &kp Y                                                                      &kp F   &kp G         &kp C        &kp R     &kp L      &kp BSLH
+&kp ESC            &kp A     &kp O      &hm LCTRL E  &hm LSHIFT U  &kp I                                                                      &kp D   &hm RSHIFT H  &hm RCTRL T  &kp N     &kp S      &kp MINUS
+&kp GRAVE          &kp SEMI  &kp Q      &kp J        &kp K         &kp X   &kp LSHFT  &kp LCTRL  &layer_td    &kp LGUI  &kp RCTRL  &kp RSHFT  &kp B   &kp M         &kp W        &kp V     &kp Z      &kp PG_UP
+&mo 2              &kp HOME  &kp END    &kp LEFT     &kp RIGHT             &kp BSPC   &kp DEL    &kp LALT     &kp RALT  &kp RET    &kp SPACE          &kp UP        &kp DOWN     &kp FSLH  &kp EQUAL  &kp PG_DN
             >;
         };
     };
